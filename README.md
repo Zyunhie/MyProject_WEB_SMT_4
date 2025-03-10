@@ -4,27 +4,6 @@ Proyek ini adalah aplikasi web yang dibangun menggunakan **Next.js** dan **TypeS
 
 ---
 
-## Fitur
-
-- **Informasi Utama**: Mahasiswa dapat melihat pengumuman, diskusi, dan agenda yang relevan.
-- **Pengaturan Dinamis**: Developer dapat mengubah logo, nama, tautan, dan elemen lainnya melalui dashboard pengembang.
-- **Dashboard Developer**: Developer dapat mengakses `/dev` dan login menggunakan akun yang sudah didaftarkan di **Clerk** oleh developer asli.
-- **CRUD Data**: Manajemen data pengumuman, diskusi, dan agenda secara penuh.
-- **Desain Responsif**: Antarmuka pengguna yang ramah perangkat mobile.
-- **Deployment Cepat**: Menggunakan **Vercel** untuk pengembangan dan penyebaran.
-
----
-
-## Teknologi yang Digunakan
-
-- **Next.js**: Framework React untuk pengembangan aplikasi web.
-- **TypeScript**: Bahasa pemrograman dengan tipe statis untuk meningkatkan pengembangan.
-- **MongoDB**: Database NoSQL untuk penyimpanan data.
-- **Vercel**: Platform untuk hosting aplikasi Next.js.
-- **Tailwind CSS**: CSS Utility-first untuk desain responsif.
-- **Clerk**: Platform otentikasi modern.
-
----
 ## Struktur Direktori
 
 Berikut adalah struktur direktori utama proyek:
