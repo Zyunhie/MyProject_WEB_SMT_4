@@ -4,7 +4,7 @@ Proyek ini adalah aplikasi web yang dibangun menggunakan **Next.js** dan **TypeS
 
 ---
 
-## Struktur Direktori
+## Struktur Direktori 
 
 Berikut adalah struktur direktori utama proyek:
 
