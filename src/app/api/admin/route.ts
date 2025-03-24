@@ -20,6 +20,27 @@ const handleError = (message: string, status: number) => {
   return NextResponse.json({ error: message }, { status });
 };
 
+export async function GET(req: NextRequest) {
+  try {
+    await connectToDB();
+
+    const { searchParams } = req.nextUrl;
+    const data = searchParams.get("data");
+
+    if (!data || !["general", "pengumuman", "diskusi", "agenda"].includes(data)) {
+      return handleError("Invalid or missing API Request, contact developer.", 400);
+    }
+
+    const model = getModel(data);
+    const result = await model!.find({});
+
+    return NextResponse.json(result, { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return handleError("Error fetching data", 500);
+  }
+}
+
 export async function POST(req: NextRequest) {
   try {
     await connectToDB();

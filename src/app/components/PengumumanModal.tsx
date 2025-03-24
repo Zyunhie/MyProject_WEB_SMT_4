@@ -19,6 +19,7 @@ export default function PengumumanModal() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
+  const [isSaveConfirmOpen, setIsSaveConfirmOpen] = useState(false); // Modal konfirmasi untuk save (add/edit)
   const [modalType, setModalType] = useState<"add" | "edit" | null>(null);
   const [currentData, setCurrentData] = useState<Pengumuman | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
@@ -44,6 +45,14 @@ export default function PengumumanModal() {
   const closeDeleteConfirm = () => {
     setDeleteId(null);
     setIsDeleteConfirmOpen(false);
+  };
+
+  const openSaveConfirm = () => {
+    setIsSaveConfirmOpen(true); // Membuka modal konfirmasi save
+  };
+
+  const closeSaveConfirm = () => {
+    setIsSaveConfirmOpen(false); // Menutup modal konfirmasi save
   };
 
   const handleSave = async (data: Pengumuman) => {
@@ -84,6 +93,11 @@ export default function PengumumanModal() {
     } finally {
       setSaving(false);
     }
+  };
+
+  const handleSaveConfirm = () => {
+    handleSave(currentData!); // Menyimpan data setelah konfirmasi
+    closeSaveConfirm(); // Menutup modal konfirmasi setelah save
   };
 
   const handleDelete = async (id: string) => {
@@ -221,9 +235,8 @@ export default function PengumumanModal() {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                handleSave(currentData!);
+                openSaveConfirm(); // Membuka modal konfirmasi saat submit
               }}
-              className="space-y-6"
             >
               <div>
                 <label className="block text-sm font-medium text-gray-700">
@@ -238,9 +251,7 @@ export default function PengumumanModal() {
                       title: e.target.value,
                     }))
                   }
-                  className="mt-2 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 px-4 py-2"
-                  required
-                  placeholder="Enter the title"
+                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
               </div>
               <div>
@@ -255,9 +266,8 @@ export default function PengumumanModal() {
                       description: e.target.value,
                     }))
                   }
-                  className="mt-2 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 px-4 py-2"
-                  rows={4}
-                  placeholder="Enter description"
+                  rows={3}
+                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
               </div>
               <div>
@@ -265,7 +275,7 @@ export default function PengumumanModal() {
                   Image URL
                 </label>
                 <input
-                  type="url"
+                  type="text"
                   value={currentData?.image || ""}
                   onChange={(e) =>
                     setCurrentData((prev) => ({
@@ -273,31 +283,52 @@ export default function PengumumanModal() {
                       image: e.target.value,
                     }))
                   }
-                  className="mt-2 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 px-4 py-2"
-                  placeholder="Enter image URL"
+                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
               </div>
-              <div className="flex justify-center gap-4">
+              <div className="flex justify-end gap-4">
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                  disabled={saving}
+                  className="bg-blue-600 text-white px-6 py-2 rounded-md shadow transition"
                 >
-                  {saving
-                    ? "Menyimpan..."
-                    : modalType === "add"
-                    ? "Tambah"
-                    : "Simpan"}
+                  {saving ? "Saving..." : "Tambah"}
                 </button>
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="w-full bg-gray-600 text-white py-2 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 transition"
+                  className="bg-gray-600 text-white px-6 py-2 rounded-md shadow transition"
                 >
                   Batal
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {isSaveConfirmOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-8 w-full max-w-sm rounded-lg shadow-lg">
+            <h2 className="text-xl font-semibold text-center mb-4">
+              Konfirmasi Simpan
+            </h2>
+            <p className="text-center text-gray-700 mb-6">
+              Apakah Anda yakin ingin menyimpan data ini?
+            </p>
+            <div className="flex gap-4">
+              <button
+                onClick={handleSaveConfirm}
+                className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+              >
+                Tambah
+              </button>
+              <button
+                onClick={closeSaveConfirm}
+                className="w-full bg-gray-600 text-white py-2 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 transition"
+              >
+                Batal
+              </button>
+            </div>
           </div>
         </div>
       )}
