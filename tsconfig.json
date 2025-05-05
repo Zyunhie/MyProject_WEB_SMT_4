@@ -18,10 +18,12 @@
         "name": "next"
       }
     ],
+    "baseUrl": "src",  // Set baseUrl ke src
     "paths": {
-      "@/utils/*": ["utils/*"]
-    },
-    "baseUrl": "."  // Tambahkan properti ini
+      "@/components/*": ["components/*"],
+      "@/utils/*": ["utils/*"],
+      "@/models/*": ["models/*"]
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
