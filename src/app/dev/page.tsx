@@ -7,7 +7,7 @@ import Alert from "../components/Alert";
 import PengumumanModal from "../components/PengumumanModal";
 import DiskusiModal from "../components/DiskusiModal";
 import AgendaModal from "../components/AgendaModal";
-import AdminDonationPage from "../components/AdminDonation";
+import { useRouter } from 'next/navigation'
 
 export default function DevPage() {
   const [isMounted, setIsMounted] = useState(false);
@@ -17,6 +17,7 @@ export default function DevPage() {
   const [alertDetails, setAlertDetails] = useState<string | null>(null);
   const [alertType, setAlertType] = useState<"success" | "error" | null>(null);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const Modal = ({ isOpen, onClose, children }: { isOpen: boolean; onClose: () => void; children: React.ReactNode }) => {
     if (!isOpen) return null;
@@ -128,7 +129,7 @@ export default function DevPage() {
 
   return (
     <ClerkProvider>
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-6">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-sky-200 p-6">
         <div className="max-w-4xl w-full p-8 bg-white rounded-lg shadow-xl">
           <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Development Dashboard</h1>
 
@@ -163,7 +164,7 @@ export default function DevPage() {
               <button onClick={() => openModal(<AgendaModal />)} className="bg-indigo-600 text-white px-8 py-3 rounded-xl shadow-lg hover:bg-indigo-700 transition duration-300">
                 Agenda
               </button>
-              <button onClick={() => (window.location.href = "/admin/donation")} className="bg-indigo-600 text-white px-8 py-3 rounded-xl shadow-lg hover:bg-indigo-700 transition duration-300">
+              <button  onClick={() => router.push('/admin-donation')} className="bg-indigo-600 text-white px-8 py-3 rounded-xl shadow-lg hover:bg-indigo-700 transition duration-300">
                 Donasi
               </button>
             </div>
