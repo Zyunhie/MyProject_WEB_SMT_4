@@ -69,17 +69,17 @@ const Home: React.FC = () => {
       : generalData?.nama_forum;
 
   return (
-    <div className="min-h-screen font-[family-name:var(--font-geist-sans)] flex flex-col">
-      <header className="bg-white shadow-md sticky top-0 z-10">
+    <div className="min-h-screen font-[family-name:var(--font-geist-sans)] flex flex-col bg-sky-200">
+      <header className="bg-cyan-300 shadow-md sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 py-5 sm:px-6">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-3">
               <img
-                src={generalData?.logo}
-                alt="Logo Kampus"
-                width={50}
-                height={50}
-              />
+                  src="/assets/logokampus.png"
+                  alt="Logo Kampus"
+                  width={50}
+                  height={50}
+                />
               <div className="text-2xl font-semibold text-gray-900 truncate max-w-[200px]">
                 <a
                   href={generalData?.link_universitas}
