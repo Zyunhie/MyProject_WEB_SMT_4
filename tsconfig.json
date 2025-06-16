@@ -18,7 +18,7 @@
         "name": "next"
       }
     ],
-    "baseUrl": "src",  // Set baseUrl ke src
+    "baseUrl": "src",  // Set baseUrl ke src nya
     "paths": {
       "@/components/*": ["components/*"],
       "@/utils/*": ["utils/*"],
