@@ -10,7 +10,7 @@ export async function POST(req: NextRequest, { params }: RouteParams) {
   const { id } = params;
   const body = await req.json();
 
-  // Validate input
+  // Validate input Test
   const name = body?.name?.trim();
   const email = body?.email?.trim() || null;
   const amount = Number(body?.amount);

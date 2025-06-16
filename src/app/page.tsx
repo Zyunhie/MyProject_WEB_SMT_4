@@ -37,14 +37,14 @@ const Home: React.FC = () => {
       <div className="min-h-screen flex justify-center items-center">
         <div className="border-t-4 border-blue-500 border-solid w-16 h-16 rounded-full animate-spin"></div>
       </div>
-    );
+    )
   }
 
   if (error) {
     return (
       <div className="min-h-screen flex justify-center items-center text-red-500">
         <div className="text-center space-y-4">
-          <p className="text-xl font-semibold">Oops, something went wrong!</p>
+          <p className="text-xl font-semibold">Oops, something went wrong...!</p>
           <p>Error: {error}</p>
           <button
             onClick={() => window.location.reload()}
